@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lê Nguyên Nhật Huy | Futuristic Leader & Math Portfolio</title>
-    <!-- Tailwind CSS -->
+    <title>Lê Nguyên Nhật Huy | Executive Math & Tech Portfolio</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
+    <!-- FontAwesome 6 Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
@@ -18,12 +18,11 @@
                 extend: {
                     colors: {
                         brand: {
-                            dark: '#070a12',
-                            panel: 'rgba(13, 19, 35, 0.75)',
+                            dark: '#030712',
+                            card: 'rgba(15, 23, 42, 0.75)',
                             primary: '#6366f1',
-                            secondary: '#a855f7',
-                            cyan: '#06b6d4',
-                            emerald: '#10b981'
+                            accent: '#06b6d4',
+                            purple: '#a855f7'
                         }
                     },
                     fontFamily: {
@@ -38,47 +37,48 @@
     <style>
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #070a12; }
+        ::-webkit-scrollbar-track { background: #030712; }
         ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 9999px; }
         ::-webkit-scrollbar-thumb:hover { background: #6366f1; }
 
-        /* Glassmorphism Panel */
-        .glass-panel {
-            background: rgba(13, 19, 35, 0.75);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
+        /* Deep Glassmorphism */
+        .glass-box {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
         }
 
-        .glass-card {
-            background: rgba(22, 30, 52, 0.6);
+        .glass-inner {
+            background: rgba(30, 41, 59, 0.5);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .glass-input {
-            background: rgba(15, 23, 42, 0.7);
+            background: rgba(3, 7, 18, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.12);
         }
         .glass-input:focus {
             border-color: #6366f1;
-            box-shadow: 0 0 20px rgba(99, 102, 241, 0.35);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
             outline: none;
         }
 
-        /* Ambient Glow & Radar Animation */
-        .glow-avatar {
-            box-shadow: 0 0 35px rgba(99, 102, 241, 0.6), 0 0 70px rgba(168, 85, 247, 0.3);
+        /* Ambient Glows */
+        .glow-effect {
+            box-shadow: 0 0 50px rgba(99, 102, 241, 0.35), 0 0 100px rgba(168, 85, 247, 0.15);
         }
 
-        @keyframes pulseGlow {
-            0%, 100% { opacity: 0.4; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.05); }
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
         }
-        .ambient-pulse { animation: pulseGlow 6s infinite ease-in-out; }
+        .floating { animation: floatSlow 5s ease-in-out infinite; }
 
-        /* Canvas background */
-        #math-canvas {
+        /* Canvas Background */
+        #executive-canvas {
             position: fixed;
             top: 0;
             left: 0;
@@ -88,19 +88,18 @@
             pointer-events: none;
         }
 
-        .tab-content {
+        .tab-panel {
             display: none;
             opacity: 0;
-            transform: translateY(12px);
-            transition: opacity 0.35s ease, transform 0.35s ease;
+            transform: translateY(15px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .tab-content.active {
+        .tab-panel.active {
             display: block;
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Typewriter Cursor */
         .typewriter-cursor::after {
             content: '|';
             animation: blink 0.8s infinite;
@@ -108,450 +107,395 @@
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
     </style>
 </head>
-<body class="bg-[#070a12] text-slate-100 font-sans min-h-screen relative overflow-x-hidden flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
+<body class="bg-brand-dark text-slate-100 font-sans min-h-screen relative overflow-x-hidden flex flex-col justify-between selection:bg-indigo-600 selection:text-white">
 
-    <!-- Interactive Math Coordinates Background Canvas -->
-    <canvas id="math-canvas"></canvas>
+    <!-- Interactive Math Constellation Canvas -->
+    <canvas id="executive-canvas"></canvas>
 
-    <!-- Toast Notification System -->
-    <div id="toast" class="fixed top-6 right-6 z-50 transform -translate-y-24 opacity-0 transition-all duration-300 ease-out glass-panel px-5 py-3.5 rounded-2xl border border-emerald-500/40 text-emerald-400 flex items-center space-x-3 shadow-2xl">
-        <i class="fa-solid fa-circle-check text-xl"></i>
-        <span id="toast-msg" class="text-xs md:text-sm font-semibold">Đã thao tác thành công!</span>
+    <!-- Notification Toast -->
+    <div id="toast-alert" class="fixed top-6 right-6 z-50 transform -translate-y-28 opacity-0 transition-all duration-300 ease-out glass-box px-5 py-3.5 rounded-2xl border border-emerald-500/40 text-emerald-400 flex items-center space-x-3 shadow-2xl">
+        <i class="fa-solid fa-circle-check text-lg"></i>
+        <span id="toast-text" class="text-xs md:text-sm font-semibold">Đã sao chép thành công!</span>
     </div>
 
-    <!-- AUDIO FX TOGGLE -->
-    <button onclick="toggleAudio()" id="audio-btn" title="Bật/Tắt âm thanh tương tác" class="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full glass-panel border border-indigo-500/30 text-indigo-400 hover:text-white flex items-center justify-center shadow-xl transition hover:scale-110">
-        <i class="fa-solid fa-volume-high text-base" id="audio-icon"></i>
-    </button>
-
-    <!-- TOP CONTROL BAR -->
+    <!-- TOP BAR -->
     <header class="relative z-20 container mx-auto px-4 pt-6 max-w-5xl flex justify-between items-center">
-        <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-cyan-400 animate-ping"></span>
-            <span class="text-xs font-mono tracking-wider text-slate-400 uppercase">HUB // 11 TOÁN 2 THPT CHUYÊN BẾN TRE</span>
+        <div class="flex items-center gap-2.5">
+            <span class="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></span>
+            <span class="text-xs font-mono tracking-widest text-slate-400 uppercase">EXECUTIVE HUB // 11 TOÁN 2 CHUYÊN BẾN TRE</span>
         </div>
-        <div class="flex items-center gap-3">
-            <button onclick="generateVCard()" class="px-3 py-1.5 rounded-xl bg-slate-900/80 border border-indigo-500/30 text-indigo-300 hover:bg-indigo-600 hover:text-white text-xs font-semibold transition flex items-center gap-1.5 shadow-lg">
+        <div class="flex items-center gap-2.5">
+            <button onclick="downloadVCard()" class="px-3.5 py-2 rounded-xl bg-slate-900/90 border border-indigo-500/40 text-indigo-300 hover:bg-indigo-600 hover:text-white text-xs font-semibold transition flex items-center gap-2 shadow-lg">
                 <i class="fa-solid fa-address-card"></i>
                 <span>Tải vCard</span>
             </button>
         </div>
     </header>
 
-    <!-- MAIN APP WRAPPER -->
-    <main class="relative z-10 container mx-auto px-4 py-6 max-w-5xl flex-grow">
+    <!-- MAIN CONTAINER -->
+    <main class="relative z-10 container mx-auto px-4 py-6 max-w-5xl flex-grow space-y-6">
         
-        <!-- HERO PROFILE SECTION -->
-        <section class="glass-panel rounded-3xl p-6 md:p-8 mb-6 shadow-2xl relative overflow-hidden">
-            <div class="absolute -top-32 -right-32 w-80 h-80 bg-indigo-600/20 rounded-full blur-3xl ambient-pulse pointer-events-none"></div>
-            <div class="absolute -bottom-32 -left-32 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl ambient-pulse pointer-events-none"></div>
+        <!-- HERO EXECUTIVE PROFILE SECTION -->
+        <section class="glass-box rounded-3xl p-6 md:p-10 relative overflow-hidden">
+            <div class="absolute -top-32 -right-32 w-96 h-96 bg-indigo-600/15 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-purple-600/15 rounded-full blur-3xl pointer-events-none"></div>
 
-            <div class="flex flex-col md:flex-row items-center gap-6 md:gap-10">
-                <div class="relative group">
-                    <div class="w-36 h-36 md:w-44 md:h-44 rounded-3xl glow-avatar bg-gradient-to-tr from-indigo-500 via-purple-500 to-cyan-400 p-1 transition-transform duration-500 group-hover:scale-105">
-                        <div class="w-full h-full bg-[#0b0f19] rounded-[22px] flex flex-col items-center justify-center overflow-hidden relative">
-                            <svg class="w-24 h-24 text-indigo-400 group-hover:rotate-6 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                            </svg>
-                            <span class="absolute bottom-2 font-mono text-[10px] tracking-widest text-cyan-400 bg-slate-900/90 border border-cyan-500/30 px-2.5 py-0.5 rounded-full">LOGIC_CORE</span>
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <!-- Avatar Frame with QR Section & Upload Ready -->
+                <div class="relative group floating">
+                    <div class="w-40 h-40 md:w-48 md:h-48 rounded-3xl glow-effect bg-gradient-to-tr from-indigo-500 via-purple-600 to-cyan-400 p-1">
+                        <!-- Vùng chứa ảnh: Thay thẻ div bên dưới bằng <img src="URL_ANH_CUA_BAN" class="w-full h-full object-cover rounded-[22px]"> khi bạn có ảnh -->
+                        <div class="w-full h-full bg-[#070b16] rounded-[22px] flex flex-col items-center justify-center overflow-hidden relative">
+                            <i class="fa-solid fa-user-tie text-5xl text-indigo-400 mb-2 group-hover:scale-110 transition-transform duration-300"></i>
+                            <span class="font-mono text-[10px] tracking-widest text-cyan-400 bg-slate-900/90 border border-cyan-500/30 px-2.5 py-0.5 rounded-full">AVATAR SLOT</span>
                         </div>
                     </div>
-                    <span class="absolute -bottom-2 -right-2 bg-gradient-to-r from-indigo-500 via-purple-600 to-cyan-500 text-white text-xs font-extrabold px-3.5 py-1 rounded-full border-2 border-[#070a12] shadow-xl flex items-center gap-1.5">
-                        <i class="fa-solid fa-crown text-amber-300 text-xs"></i> THỦ LĨNH
+                    <span class="absolute -bottom-2 -right-2 bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-500 text-white text-xs font-extrabold px-4 py-1.5 rounded-full border-2 border-[#030712] shadow-xl flex items-center gap-1.5">
+                        <i class="fa-solid fa-crown text-amber-300 text-xs"></i> CHỦ TỊCH / THỦ LĨNH
                     </span>
                 </div>
 
+                <!-- Info Details -->
                 <div class="text-center md:text-left flex-1">
-                    <div class="flex flex-wrap items-center justify-center md:justify-start gap-2 mb-2.5">
+                    <div class="flex flex-wrap items-center justify-center md:justify-start gap-2.5 mb-3">
                         <span class="px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/30">
                             <i class="fa-solid fa-school mr-1.5"></i>THPT Chuyên Bến Tre
                         </span>
                         <span class="px-3 py-1 rounded-full text-xs font-semibold bg-purple-500/10 text-purple-300 border border-purple-500/30">
                             <i class="fa-solid fa-square-root-variable mr-1.5"></i>Lớp 11 Toán 2
                         </span>
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-300 border border-cyan-500/30">
+                            <i class="fa-solid fa-medal mr-1.5"></i>Toán Năng
+                        </span>
                     </div>
 
-                    <h1 class="text-3xl md:text-5xl font-black tracking-tight font-display bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-indigo-300">
+                    <h1 class="text-3xl md:text-5xl font-black tracking-tight font-display bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-indigo-300 mb-2">
                         Lê Nguyên Nhật Huy
                     </h1>
 
-                    <div class="h-8 mt-1.5 flex items-center justify-center md:justify-start">
-                        <span id="typewriter" class="text-cyan-400 font-mono text-xs md:text-sm font-semibold typewriter-cursor"></span>
+                    <!-- Typewriter Role -->
+                    <div class="h-8 flex items-center justify-center md:justify-start mb-4">
+                        <span id="executive-typewriter" class="text-cyan-400 font-mono text-sm md:text-base font-semibold typewriter-cursor"></span>
                     </div>
 
-                    <div class="flex flex-wrap gap-2 justify-center md:justify-start mt-4">
-                        <span class="bg-slate-900/80 text-cyan-300 border border-cyan-500/30 text-xs px-3 py-1.5 rounded-xl font-medium flex items-center gap-1.5">
-                            <i class="fa-solid fa-calculator text-cyan-400"></i> Toán Năng Toàn Diện
+                    <!-- Tags & Hobbies: Thể thao & Công nghệ -->
+                    <div class="flex flex-wrap gap-2 justify-center md:justify-start">
+                        <span class="glass-inner text-cyan-300 border border-cyan-500/30 text-xs px-3.5 py-1.5 rounded-xl font-medium flex items-center gap-2">
+                            <i class="fa-solid fa-basketball text-cyan-400"></i> Đam Mê Thể Thao & Chiến Thuật
                         </span>
-                        <span class="bg-slate-900/80 text-amber-300 border border-amber-500/30 text-xs px-3 py-1.5 rounded-xl font-medium flex items-center gap-1.5">
-                            <i class="fa-solid fa-chess-king text-amber-400"></i> Tư Duy Chiến Lược
+                        <span class="glass-inner text-indigo-300 border border-indigo-500/30 text-xs px-3.5 py-1.5 rounded-xl font-medium flex items-center gap-2">
+                            <i class="fa-solid fa-microchip text-indigo-400"></i> Bậc Thầy Công Nghệ Số & Full-Stack
                         </span>
-                        <span class="bg-slate-900/80 text-purple-300 border border-purple-500/30 text-xs px-3 py-1.5 rounded-xl font-medium flex items-center gap-1.5">
-                            <i class="fa-solid fa-code text-purple-400"></i> Full-Stack Dev & AI
+                        <span class="glass-inner text-amber-300 border border-amber-500/30 text-xs px-3.5 py-1.5 rounded-xl font-medium flex items-center gap-2">
+                            <i class="fa-solid fa-chess-king text-amber-400"></i> Tư Duy Lãnh Đạo
                         </span>
                     </div>
                 </div>
             </div>
 
-            <!-- STATS STRIP -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-8 pt-6 border-t border-slate-800/80">
-                <div class="glass-card rounded-2xl p-3.5 text-center">
-                    <span class="text-2xl md:text-3xl font-black font-display text-indigo-400 tracking-tight counter" data-target="98">0</span><span class="text-indigo-400 font-bold">%</span>
-                    <p class="text-[11px] text-slate-400 font-medium mt-0.5">Điểm Tư Duy Logic</p>
+            <!-- STATS COUNTER STRIP -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 pt-6 border-t border-slate-800/80">
+                <div class="glass-inner rounded-2xl p-4 text-center">
+                    <span class="text-2xl md:text-3xl font-black font-display text-indigo-400">99</span><span class="text-indigo-400 font-bold">%</span>
+                    <p class="text-xs text-slate-400 font-medium mt-1">Tư Duy Logic & Toán Học</p>
                 </div>
-                <div class="glass-card rounded-2xl p-3.5 text-center">
-                    <span class="text-2xl md:text-3xl font-black font-display text-purple-400 tracking-tight counter" data-target="15">0</span><span class="text-purple-400 font-bold">+</span>
-                    <p class="text-[11px] text-slate-400 font-medium mt-0.5">Dự Án & Sự Kiện</p>
+                <div class="glass-inner rounded-2xl p-4 text-center">
+                    <span class="text-2xl md:text-3xl font-black font-display text-purple-400">20</span><span class="text-purple-400 font-bold">+</span>
+                    <p class="text-xs text-slate-400 font-medium mt-1">Dự Án Công Nghệ & Giải Đấu</p>
                 </div>
-                <div class="glass-card rounded-2xl p-3.5 text-center">
-                    <span class="text-2xl md:text-3xl font-black font-display text-cyan-400 tracking-tight counter" data-target="100">0</span><span class="text-cyan-400 font-bold">%</span>
-                    <p class="text-[11px] text-slate-400 font-medium mt-0.5">Năng Lượng Thủ Lĩnh</p>
+                <div class="glass-inner rounded-2xl p-4 text-center">
+                    <span class="text-2xl md:text-3xl font-black font-display text-cyan-400">100</span><span class="text-cyan-400 font-bold">%</span>
+                    <p class="text-xs text-slate-400 font-medium mt-1">Năng Lượng Thủ Lĩnh</p>
                 </div>
-                <div class="glass-card rounded-2xl p-3.5 text-center">
-                    <span class="text-2xl md:text-3xl font-black font-display text-emerald-400 tracking-tight counter" data-target="12">0</span><span class="text-emerald-400 font-bold"> Giải</span>
-                    <p class="text-[11px] text-slate-400 font-medium mt-0.5">Huy Chương & Giải Thưởng</p>
+                <div class="glass-inner rounded-2xl p-4 text-center">
+                    <span class="text-2xl md:text-3xl font-black font-display text-emerald-400">15</span><span class="text-emerald-400 font-bold"> Giải</span>
+                    <p class="text-xs text-slate-400 font-medium mt-1">Huy Chương & Vinh Quang</p>
                 </div>
             </div>
         </section>
 
         <!-- NAVIGATION TABS -->
-        <nav class="glass-panel rounded-2xl p-1.5 mb-6 flex flex-wrap sm:flex-nowrap gap-1 shadow-2xl">
-            <button onclick="switchTab('tab-overview')" id="btn-tab-overview" class="tab-btn active flex-1 py-3 px-3 rounded-xl font-semibold text-xs md:text-sm transition-all duration-300 flex items-center justify-center gap-2 text-white bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg">
-                <i class="fa-solid fa-compass"></i> <span>Tổng Quan</span>
+        <nav class="glass-box rounded-2xl p-2 flex flex-wrap sm:flex-nowrap gap-1.5">
+            <button onclick="switchTab('overview')" id="btn-overview" class="tab-btn active flex-1 py-3 px-4 rounded-xl font-semibold text-xs md:text-sm transition-all duration-300 flex items-center justify-center gap-2 text-white bg-gradient-to-r from-indigo-600 to-purple-600 shadow-xl">
+                <i class="fa-solid fa-user-astronaut"></i> <span>Tổng Quan</span>
             </button>
-            <button onclick="switchTab('tab-matrix')" id="btn-tab-matrix" class="tab-btn flex-1 py-3 px-3 rounded-xl font-semibold text-xs md:text-sm text-slate-400 hover:text-slate-200 transition-all duration-300 flex items-center justify-center gap-2">
-                <i class="fa-solid fa-chart-pie"></i> <span>Thế Mạnh</span>
+            <button onclick="switchTab('mastery')" id="btn-mastery" class="tab-btn flex-1 py-3 px-4 rounded-xl font-semibold text-xs md:text-sm text-slate-400 hover:text-white transition-all duration-300 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-bolt"></i> <span>Thế Mạnh & Thể Thao</span>
             </button>
-            <button onclick="switchTab('tab-projects')" id="btn-tab-projects" class="tab-btn flex-1 py-3 px-3 rounded-xl font-semibold text-xs md:text-sm text-slate-400 hover:text-slate-200 transition-all duration-300 flex items-center justify-center gap-2">
-                <i class="fa-solid fa-trophy"></i> <span>Dự Án</span>
+            <button onclick="switchTab('contact')" id="btn-contact" class="tab-btn flex-1 py-3 px-4 rounded-xl font-semibold text-xs md:text-sm text-slate-400 hover:text-white transition-all duration-300 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-qrcode"></i> <span>Liên Hệ & QR Code</span>
             </button>
-            <button onclick="switchTab('tab-game')" id="btn-tab-game" class="tab-btn flex-1 py-3 px-3 rounded-xl font-semibold text-xs md:text-sm text-slate-400 hover:text-slate-200 transition-all duration-300 flex items-center justify-center gap-2">
-                <i class="fa-solid fa-puzzle-piece text-cyan-400"></i> <span class="text-cyan-300 font-bold">Thử Thách</span>
+            <button onclick="switchTab('challenges')" id="btn-challenges" class="tab-btn flex-1 py-3 px-4 rounded-xl font-semibold text-xs md:text-sm text-slate-400 hover:text-white transition-all duration-300 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-puzzle-piece text-cyan-400"></i> <span class="text-cyan-300 font-bold">Thử Thách Logic</span>
             </button>
-            <button onclick="switchTab('tab-guestbook')" id="btn-tab-guestbook" class="tab-btn flex-1 py-3 px-3 rounded-xl font-semibold text-xs md:text-sm text-slate-400 hover:text-slate-200 transition-all duration-300 flex items-center justify-center gap-2">
-                <i class="fa-solid fa-comments"></i> <span>Góc Kết Nối</span>
+            <button onclick="switchTab('guestbook')" id="btn-guestbook" class="tab-btn flex-1 py-3 px-4 rounded-xl font-semibold text-xs md:text-sm text-slate-400 hover:text-white transition-all duration-300 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-comments"></i> <span>Góc Lời Nhắn</span>
             </button>
         </nav>
 
-        <!-- SECTIONS -->
+        <!-- TAB CONTENT AREA -->
         <div class="space-y-6">
 
-            <!-- TAB 1: OVERVIEW -->
-            <section id="tab-overview" class="tab-content active space-y-6">
-                <div class="glass-panel rounded-3xl p-6 md:p-8 shadow-xl">
-                    <div class="flex items-center gap-3 mb-5">
-                        <div class="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center border border-indigo-500/30">
-                            <i class="fa-solid fa-user-astronaut text-lg"></i>
-                        </div>
-                        <div>
-                            <h2 class="text-xl font-bold font-display text-white">Chân Dung & Sứ Mệnh</h2>
-                            <p class="text-xs text-slate-400">Tư duy toán học nâng tầm khả năng thực thi</p>
-                        </div>
-                    </div>
-                    <div class="text-slate-300 text-sm leading-relaxed space-y-4">
-                        <p>
-                            Tôi là <strong class="text-indigo-400 font-semibold">Lê Nguyên Nhật Huy</strong>, học sinh lớp <strong>11 Toán 2 - THPT Chuyên Bến Tre</strong>. Trong góc nhìn của tôi, Toán học là ngôn ngữ đỉnh cao để rèn luyện tư duy logic, tối ưu hóa mọi quyết định trong cuộc sống và công nghệ.
-                        </p>
-                        <p>
-                            Với vai trò một học sinh toàn năng và tư duy thủ lĩnh, tôi luôn giữ thái độ chủ động: vừa làm chủ kiến thức chuyên sâu, vừa tiên phong tổ chức, điều phối các hoạt động tập thể.
-                        </p>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
-                        <button onclick="switchTab('tab-game')" class="p-4 rounded-2xl glass-card border border-cyan-500/30 hover:border-cyan-400 transition flex items-center justify-between group">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-lg">
-                                    <i class="fa-solid fa-brain"></i>
-                                </div>
-                                <div class="text-left">
-                                    <h4 class="text-xs font-bold text-white">Thử Thách Logic Toán</h4>
-                                    <p class="text-[11px] text-slate-400">Chinh phục câu hỏi tư duy do Huy thiết kế</p>
-                                </div>
-                            </div>
-                            <i class="fa-solid fa-chevron-right text-xs text-slate-500 group-hover:translate-x-1 transition"></i>
-                        </button>
-
-                        <button onclick="switchTab('tab-projects')" class="p-4 rounded-2xl glass-card border border-purple-500/30 hover:border-purple-400 transition flex items-center justify-between group">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-lg">
-                                    <i class="fa-solid fa-rocket"></i>
-                                </div>
-                                <div class="text-left">
-                                    <h4 class="text-xs font-bold text-white">Khám Phá Dự Án</h4>
-                                    <p class="text-[11px] text-slate-400">Thành tích toán học & sản phẩm công nghệ</p>
-                                </div>
-                            </div>
-                            <i class="fa-solid fa-chevron-right text-xs text-slate-500 group-hover:translate-x-1 transition"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="glass-panel rounded-3xl p-6 shadow-xl">
-                    <h3 class="text-sm font-bold text-white mb-4 uppercase tracking-wider font-display flex items-center gap-2">
-                        <i class="fa-solid fa-paper-plane text-indigo-400"></i> Kênh Tương Tác Trực Tiếp
-                    </h3>
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                        <button onclick="copyToClipboard('contact@nhathuy.dev', 'Email')" class="p-3 rounded-2xl glass-card hover:bg-indigo-600/30 border border-slate-800 transition text-center group">
-                            <i class="fa-solid fa-envelope text-indigo-400 text-xl mb-1.5 group-hover:scale-110 transition"></i>
-                            <span class="block text-xs font-semibold text-white">Email</span>
-                            <span class="text-[10px] text-slate-400">Copy địa chỉ</span>
-                        </button>
-                        <a href="https://facebook.com" target="_blank" class="p-3 rounded-2xl glass-card hover:bg-blue-600/30 border border-slate-800 transition text-center group">
-                            <i class="fa-brands fa-facebook text-blue-400 text-xl mb-1.5 group-hover:scale-110 transition"></i>
-                            <span class="block text-xs font-semibold text-white">Facebook</span>
-                            <span class="text-[10px] text-slate-400">Kết bạn ngay</span>
-                        </a>
-                        <button onclick="copyToClipboard('0987654321', 'Zalo')" class="p-3 rounded-2xl glass-card hover:bg-cyan-600/30 border border-slate-800 transition text-center group">
-                            <i class="fa-solid fa-comment-sms text-cyan-400 text-xl mb-1.5 group-hover:scale-110 transition"></i>
-                            <span class="block text-xs font-semibold text-white">Zalo</span>
-                            <span class="text-[10px] text-slate-400">0987 654 321</span>
-                        </button>
-                        <a href="https://github.com" target="_blank" class="p-3 rounded-2xl glass-card hover:bg-purple-600/30 border border-slate-800 transition text-center group">
-                            <i class="fa-brands fa-github text-purple-400 text-xl mb-1.5 group-hover:scale-110 transition"></i>
-                            <span class="block text-xs font-semibold text-white">GitHub</span>
-                            <span class="text-[10px] text-slate-400">Xem nguồn code</span>
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- TAB 2: MATRIX -->
-            <section id="tab-matrix" class="tab-content glass-panel rounded-3xl p-6 md:p-8 shadow-xl">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center border border-purple-500/30">
-                        <i class="fa-solid fa-chart-radar text-lg"></i>
+            <!-- 1. OVERVIEW TAB -->
+            <section id="panel-overview" class="tab-panel active glass-box rounded-3xl p-6 md:p-8 space-y-6">
+                <div class="flex items-center gap-3.5 mb-2">
+                    <div class="w-12 h-12 rounded-2xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center border border-indigo-500/30 text-xl">
+                        <i class="fa-solid fa-compass"></i>
                     </div>
                     <div>
-                        <h2 class="text-xl font-bold font-display text-white">Ma Trận Năng Lực & Kỹ Năng</h2>
-                        <p class="text-xs text-slate-400">Đánh giá các chỉ số thế mạnh cốt lõi</p>
+                        <h2 class="text-xl font-bold font-display text-white">Chân Dung & Tầm Nhìn Chủ Tịch</h2>
+                        <p class="text-xs text-slate-400">Nền tảng toán học kết hợp tư duy công nghệ đỉnh cao</p>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="space-y-4">
-                        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 font-mono">CHỈ SỐ TƯ DUY</h3>
-                        <div>
-                            <div class="flex justify-between text-xs font-semibold mb-1">
-                                <span class="text-slate-200"><i class="fa-solid fa-square-root-variable text-indigo-400 mr-1.5"></i>Tối Ưu Hóa & Giải Toán Nâng Cao</span>
-                                <span class="text-indigo-400 font-mono">96%</span>
-                            </div>
-                            <div class="w-full bg-slate-900 rounded-full h-2.5 overflow-hidden border border-slate-800">
-                                <div class="bg-gradient-to-r from-indigo-500 to-purple-500 h-2.5 rounded-full" style="width: 96%"></div>
-                            </div>
+                    <div class="glass-inner p-5 rounded-2xl space-y-3">
+                        <h3 class="text-sm font-bold text-indigo-300 flex items-center gap-2">
+                            <i class="fa-solid fa-square-root-variable text-indigo-400"></i> Tư Duy Toán Học Sắc Sảo
+                        </h3>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Là học sinh lớp <strong>11 Toán 2 - THPT Chuyên Bến Tre</strong>, tôi xem toán học là cốt lõi của mọi giải pháp logic. Khả năng phân tích sâu sắc giúp tôi làm chủ công nghệ và định hình chiến lược trong mọi dự án.
+                        </p>
+                    </div>
+                    <div class="glass-inner p-5 rounded-2xl space-y-3">
+                        <h3 class="text-sm font-bold text-purple-300 flex items-center gap-2">
+                            <i class="fa-solid fa-chess-king text-purple-400"></i> Phong Cách Lãnh Đạo Thủ Lĩnh
+                        </h3>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Sẵn sàng dẫn dắt tập thể vượt qua mọi thử thách. Tinh thần đồng đội, quyết đoán và luôn tìm kiếm sự tối ưu là kim chỉ nam trong học tập cũng như sinh hoạt ngoại khóa.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. MASTERY & SPORTS TAB -->
+            <section id="panel-mastery" class="tab-panel glass-box rounded-3xl p-6 md:p-8 space-y-6">
+                <div class="flex items-center gap-3.5 mb-2">
+                    <div class="w-12 h-12 rounded-2xl bg-purple-500/20 text-purple-400 flex items-center justify-center border border-purple-500/30 text-xl">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold font-display text-white">Thế Mạnh Chuyên Sâu & Thể Thao</h2>
+                        <p class="text-xs text-slate-400">Bậc thầy công nghệ số & đam mê thể thao nhiệt huyết</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="glass-inner p-5 rounded-2xl border-l-4 border-l-indigo-500">
+                        <h4 class="text-sm font-bold text-white mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-laptop-code text-indigo-400"></i> Bậc Thầy Công Nghệ Số
+                        </h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Làm chủ kiến trúc Full-Stack, tư duy giải thuật tối ưu, phát triển web app tốc độ cao và tự động hóa hệ thống thông minh.
+                        </p>
+                    </div>
+                    <div class="glass-inner p-5 rounded-2xl border-l-4 border-l-cyan-500">
+                        <h4 class="text-sm font-bold text-white mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-basketball text-cyan-400"></i> Đam Mê Thể Thao
+                        </h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Nhiệt huyết trên sân bóng rổ và bóng đá. Thể thao rèn luyện sức bền, sự quyết đoán và tinh thần đồng đội sắt đá.
+                        </p>
+                    </div>
+                    <div class="glass-inner p-5 rounded-2xl border-l-4 border-l-amber-500">
+                        <h4 class="text-sm font-bold text-white mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-brain text-amber-400"></i> Phản Biện & Chiến Lược
+                        </h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Khả năng lập luận chặt chẽ, nhìn nhận vấn đề đa chiều từ nền tảng chuyên Toán giúp đưa ra các quyết định chiến lược chính xác.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. CONTACT & QR CODE TAB -->
+            <section id="panel-contact" class="tab-panel glass-box rounded-3xl p-6 md:p-8 space-y-6">
+                <div class="flex items-center gap-3.5 mb-2">
+                    <div class="w-12 h-12 rounded-2xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center border border-cyan-500/30 text-xl">
+                        <i class="fa-solid fa-qrcode"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold font-display text-white">Mã QR & Thông Tin Liên Hệ</h2>
+                        <p class="text-xs text-slate-400">Kết nối trực tiếp với Chủ tịch Lê Nguyên Nhật Huy</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                    <!-- QR Code Card -->
+                    <div class="glass-inner p-6 rounded-2xl text-center flex flex-col items-center justify-center">
+                        <div class="w-44 h-44 bg-slate-900 border-2 border-cyan-500/40 rounded-2xl flex flex-col items-center justify-center p-3 mb-4 shadow-xl relative group">
+                            <!-- Chỗ để mã QR: Thay thế bằng thẻ <img src="URL_QR_CODE"> khi có ảnh QR thực tế -->
+                            <i class="fa-solid fa-qrcode text-6xl text-cyan-400 mb-2"></i>
+                            <span class="text-[10px] font-mono text-cyan-300 bg-cyan-500/10 px-2 py-0.5 rounded">QR_SLOT (TRỐNG)</span>
                         </div>
-                        <div>
-                            <div class="flex justify-between text-xs font-semibold mb-1">
-                                <span class="text-slate-200"><i class="fa-solid fa-users-gear text-amber-400 mr-1.5"></i>Lãnh Đạo & Quản Lý Tập Thể</span>
-                                <span class="text-amber-400 font-mono">92%</span>
-                            </div>
-                            <div class="w-full bg-slate-900 rounded-full h-2.5 overflow-hidden border border-slate-800">
-                                <div class="bg-gradient-to-r from-amber-500 to-orange-500 h-2.5 rounded-full" style="width: 92%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between text-xs font-semibold mb-1">
-                                <span class="text-slate-200"><i class="fa-solid fa-microchip text-cyan-400 mr-1.5"></i>Tư Duy Giải Thuật & Lập Trình</span>
-                                <span class="text-cyan-400 font-mono">88%</span>
-                            </div>
-                            <div class="w-full bg-slate-900 rounded-full h-2.5 overflow-hidden border border-slate-800">
-                                <div class="bg-gradient-to-r from-cyan-500 to-blue-500 h-2.5 rounded-full" style="width: 88%"></div>
-                            </div>
-                        </div>
+                        <p class="text-xs text-slate-400">Quét mã QR để lưu danh bạ hoặc kết nối mạng xã hội ngay lập tức.</p>
                     </div>
 
+                    <!-- Contact Hub Buttons -->
                     <div class="space-y-3">
-                        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 font-mono">TRỤ CỘT THỦ LĨNH</h3>
-                        <div class="glass-card p-4 rounded-2xl border border-slate-800">
-                            <h4 class="text-xs font-bold text-indigo-300 flex items-center gap-2 mb-1">
-                                <i class="fa-solid fa-bullseye"></i> Định Hướng Mục Tiêu Sắc Bén
-                            </h4>
-                            <p class="text-[11px] text-slate-400 leading-relaxed">
-                                Xây dựng lộ trình rõ ràng cho mọi hoạt động chung của lớp 11 Toán 2, đảm bảo đúng tiến độ và hiệu quả cao nhất.
-                            </p>
-                        </div>
-                        <div class="glass-card p-4 rounded-2xl border border-slate-800">
-                            <h4 class="text-xs font-bold text-purple-300 flex items-center gap-2 mb-1">
-                                <i class="fa-solid fa-handshake"></i> Kết Nối & Truyền Cảm Hứng
-                            </h4>
-                            <p class="text-[11px] text-slate-400 leading-relaxed">
-                                Lắng nghe góc nhìn từ các thành viên, dung hòa ý kiến và tối ưu hóa năng lực cá nhân của từng bạn học.
-                            </p>
-                        </div>
+                        <button onclick="copyToClipboard('contact@nhathuy.dev', 'Email')" class="w-full p-4 rounded-2xl glass-inner hover:bg-indigo-600/30 border border-slate-800 transition flex items-center justify-between group">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center">
+                                    <i class="fa-solid fa-envelope text-lg"></i>
+                                </div>
+                                <div class="text-left">
+                                    <h4 class="text-xs font-bold text-white">Email Cá Nhân</h4>
+                                    <p class="text-[11px] text-slate-400">contact@nhathuy.dev</p>
+                                </div>
+                            </div>
+                            <span class="text-xs font-semibold text-indigo-400 group-hover:translate-x-1 transition">Sao chép</span>
+                        </button>
+
+                        <button onclick="copyToClipboard('0987654321', 'Số Điện Thoại / Zalo')" class="w-full p-4 rounded-2xl glass-inner hover:bg-cyan-600/30 border border-slate-800 transition flex items-center justify-between group">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center">
+                                    <i class="fa-solid fa-phone text-lg"></i>
+                                </div>
+                                <div class="text-left">
+                                    <h4 class="text-xs font-bold text-white">Zalo / SĐT Trực Tiếp</h4>
+                                    <p class="text-[11px] text-slate-400">0987 654 321</p>
+                                </div>
+                            </div>
+                            <span class="text-xs font-semibold text-cyan-400 group-hover:translate-x-1 transition">Sao chép</span>
+                        </button>
+
+                        <a href="https://facebook.com" target="_blank" class="w-full p-4 rounded-2xl glass-inner hover:bg-blue-600/30 border border-slate-800 transition flex items-center justify-between group">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-10 h-10 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center">
+                                    <i class="fa-brands fa-facebook text-lg"></i>
+                                </div>
+                                <div class="text-left">
+                                    <h4 class="text-xs font-bold text-white">Facebook Chính Thức</h4>
+                                    <p class="text-[11px] text-slate-400">Kết nối ngoại giao & học tập</p>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-arrow-right text-xs text-blue-400 group-hover:translate-x-1 transition"></i>
+                        </a>
                     </div>
                 </div>
             </section>
 
-            <!-- TAB 3: PROJECTS -->
-            <section id="tab-projects" class="tab-content glass-panel rounded-3xl p-6 md:p-8 shadow-xl">
-                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center border border-indigo-500/30">
-                            <i class="fa-solid fa-folder-open text-lg"></i>
-                        </div>
-                        <div>
-                            <h2 class="text-xl font-bold font-display text-white">Dấu Ấn & Dự Án Tự Hào</h2>
-                            <p class="text-xs text-slate-400">Click vào thẻ để xem chi tiết quy trình thực hiện</p>
-                        </div>
-                    </div>
-
-                    <div class="flex gap-1.5 bg-slate-900/90 p-1 rounded-xl border border-slate-800 text-xs">
-                        <button onclick="filterProjects('all')" class="proj-filter active px-3 py-1.5 rounded-lg font-medium text-white bg-indigo-600 transition">Tất cả</button>
-                        <button onclick="filterProjects('math')" class="proj-filter px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white transition">Toán Học</button>
-                        <button onclick="filterProjects('tech')" class="proj-filter px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white transition">Công Nghệ</button>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="projects-grid">
-                    <div onclick="openProjectModal('item1')" class="proj-card math glass-card p-5 rounded-2xl border border-slate-800 hover:border-indigo-500/50 cursor-pointer transition-all duration-300 hover:-translate-y-1">
-                        <div class="flex justify-between items-start mb-3">
-                            <span class="text-[10px] font-bold px-2.5 py-1 rounded-md bg-amber-500/10 text-amber-400 border border-amber-500/20">
-                                <i class="fa-solid fa-trophy mr-1"></i> GIẢI THƯỞNG
-                            </span>
-                            <span class="text-[10px] text-slate-400 font-mono">2024 - 2025</span>
-                        </div>
-                        <h3 class="font-bold text-white text-base mb-1.5">Học Sinh Giỏi Toán Cấp Tỉnh</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-4">
-                            Đạt thành tích xuất sắc trong kỳ thi HSG Toán THPT, đại diện trường Chuyên Bến Tre trong các câu lạc bộ học thuật.
-                        </p>
-                        <div class="flex items-center justify-between text-indigo-400 text-xs font-semibold">
-                            <span>Xem chi tiết bài thi</span>
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </div>
-                    </div>
-
-                    <div onclick="openProjectModal('item2')" class="proj-card tech glass-card p-5 rounded-2xl border border-slate-800 hover:border-cyan-500/50 cursor-pointer transition-all duration-300 hover:-translate-y-1">
-                        <div class="flex justify-between items-start mb-3">
-                            <span class="text-[10px] font-bold px-2.5 py-1 rounded-md bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
-                                <i class="fa-solid fa-laptop-code mr-1"></i> FULL-STACK
-                            </span>
-                            <span class="text-[10px] text-slate-400 font-mono">2026</span>
-                        </div>
-                        <h3 class="font-bold text-white text-base mb-1.5">Math Solver & Dynamic Hub</h3>
-                        <p class="text-slate-400 text-xs leading-relaxed mb-4">
-                            Hệ thống web hỗ trợ tổng hợp đề thi thử Toán chuyên, công cụ vẽ đồ thị và tương tác cộng đồng học sinh.
-                        </p>
-                        <div class="flex items-center justify-between text-cyan-400 text-xs font-semibold">
-                            <span>Khám phá tính năng</span>
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- TAB 4: MINI GAME -->
-            <section id="tab-game" class="tab-content glass-panel rounded-3xl p-6 md:p-8 shadow-xl">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center border border-cyan-500/30">
-                        <i class="fa-solid fa-gamepad text-lg"></i>
+            <!-- 4. CHALLENGES TAB -->
+            <section id="panel-challenges" class="tab-panel glass-box rounded-3xl p-6 md:p-8 space-y-6">
+                <div class="flex items-center gap-3.5 mb-2">
+                    <div class="w-12 h-12 rounded-2xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center border border-cyan-500/30 text-xl">
+                        <i class="fa-solid fa-puzzle-piece"></i>
                     </div>
                     <div>
-                        <h2 class="text-xl font-bold font-display text-white">Thử Thách Tư Duy Logic</h2>
-                        <p class="text-xs text-slate-400">Giải đố Toán học nhanh và xem đánh giá năng lực</p>
+                        <h2 class="text-xl font-bold font-display text-white">Thử Thách Tư Duy Toán Học</h2>
+                        <p class="text-xs text-slate-400">Kiểm tra năng lực logic nhanh chuẩn phong cách chuyên Toán</p>
                     </div>
                 </div>
 
-                <div class="glass-card p-6 rounded-2xl border border-slate-800 max-w-xl mx-auto text-center" id="quiz-container">
-                    <div class="mb-4">
-                        <span id="quiz-step" class="text-xs font-mono text-cyan-400 bg-cyan-500/10 border border-cyan-500/30 px-3 py-1 rounded-full">CÂU HỎI 1/3</span>
-                    </div>
-                    <h3 id="quiz-question" class="text-base font-bold text-white mb-6">...</h3>
-                    <div id="quiz-options" class="grid grid-cols-1 gap-2.5 mb-6"></div>
-                    <div id="quiz-feedback" class="hidden p-3 rounded-xl text-xs font-semibold mb-4"></div>
+                <div class="glass-inner p-6 rounded-2xl max-w-xl mx-auto text-center space-y-4" id="quiz-wrapper">
+                    <span id="quiz-badge" class="text-xs font-mono text-cyan-400 bg-cyan-500/10 border border-cyan-500/30 px-3 py-1 rounded-full">CÂU HỎI 1 / 3</span>
+                    <h3 id="quiz-title" class="text-base font-bold text-white leading-relaxed">...</h3>
+                    <div id="quiz-choices" class="grid grid-cols-1 gap-2.5 pt-2"></div>
                 </div>
             </section>
 
-            <!-- TAB 5: GUESTBOOK -->
-            <section id="tab-guestbook" class="tab-content glass-panel rounded-3xl p-6 md:p-8 shadow-xl">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center border border-emerald-500/30">
-                        <i class="fa-solid fa-pen-to-square text-lg"></i>
+            <!-- 5. GUESTBOOK TAB -->
+            <section id="panel-guestbook" class="tab-panel glass-box rounded-3xl p-6 md:p-8 space-y-6">
+                <div class="flex items-center gap-3.5 mb-2">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center border border-emerald-500/30 text-xl">
+                        <i class="fa-solid fa-comments"></i>
                     </div>
                     <div>
-                        <h2 class="text-xl font-bold font-display text-white">Góc Lời Nhắn & Kết Nối</h2>
-                        <p class="text-xs text-slate-400">Để lại cảm nghĩ của bạn dành cho Nhật Huy</p>
+                        <h2 class="text-xl font-bold font-display text-white">Góc Lời Nhắn & Giao Lưu</h2>
+                        <p class="text-xs text-slate-400">Để lại nhận xét hoặc lời nhắn dành cho Nhật Huy</p>
                     </div>
                 </div>
 
-                <form id="guestbook-form" onsubmit="addMessage(event)" class="space-y-4 mb-8">
+                <form id="comment-form" onsubmit="postMessage(event)" class="space-y-4">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <input type="text" id="gb-name" required placeholder="Tên của bạn..." class="glass-input w-full px-4 py-3 rounded-xl text-xs text-white placeholder-slate-500">
-                        <select id="gb-role" class="glass-input w-full px-4 py-3 rounded-xl text-xs text-slate-300">
+                        <input type="text" id="user-name" required placeholder="Tên của bạn..." class="glass-input w-full px-4 py-3 rounded-xl text-xs text-white placeholder-slate-500">
+                        <select id="user-tag" class="glass-input w-full px-4 py-3 rounded-xl text-xs text-slate-300">
                             <option value="Bạn Cùng Lớp 11 Toán 2">Bạn Cùng Lớp 11 Toán 2</option>
                             <option value="Học Sinh Chuyên Bến Tre">Học Sinh Chuyên Bến Tre</option>
-                            <option value="Bạn Hè / Bạn Ngoại Trường">Bạn Hè / Bạn Ngoại Trường</option>
+                            <option value="Đối Tác / Bạn Bè">Đối Tác / Bạn Bè</option>
                         </select>
                     </div>
-                    <textarea id="gb-msg" required rows="3" placeholder="Lời nhắn hoặc nhận xét..." class="glass-input w-full px-4 py-3 rounded-xl text-xs text-white placeholder-slate-500"></textarea>
-                    <button type="submit" class="px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold text-xs shadow-lg hover:opacity-90 transition">
-                        Gửi Lời Nhắn <i class="fa-solid fa-paper-plane ml-1"></i>
+                    <textarea id="user-msg" required rows="3" placeholder="Lời nhắn hoặc nhận xét ấn tượng..." class="glass-input w-full px-4 py-3 rounded-xl text-xs text-white placeholder-slate-500"></textarea>
+                    <button type="submit" class="px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold text-xs shadow-lg hover:opacity-90 transition flex items-center gap-2">
+                        <span>Gửi Lời Nhắn</span> <i class="fa-solid fa-paper-plane"></i>
                     </button>
                 </form>
 
-                <div id="messages-list" class="space-y-3"></div>
+                <div id="messages-container" class="space-y-3 pt-4 border-t border-slate-800"></div>
             </section>
         </div>
     </main>
 
     <!-- FOOTER -->
     <footer class="relative z-10 border-t border-slate-900 py-6 text-center text-xs text-slate-500">
-        © 2026 Lê Nguyên Nhật Huy • Designed with Precision & Logic
+        © 2026 Lê Nguyên Nhật Huy • Executive Web Architecture & Engineering
     </footer>
 
     <!-- JAVASCRIPT ENGINE -->
     <script>
         // TYPEWRITER EFFECT
-        const roles = ["Học Sinh 11 Toán 2 Chuyên Bến Tre", "Tư Duy Thủ Lĩnh & Sáng Tạo", "Full-Stack Developer & Logic Enthusiast"];
-        let rIdx = 0, cIdx = 0, isDeleting = false;
-        function typeEffect() {
-            const current = roles[rIdx];
-            const el = document.getElementById('typewriter');
-            if (!el) return;
+        const roles = [
+            "Chủ Tịch Tập Đoàn Nghiên Cứu Khoa Học Toán Học",
+            "Thủ Lĩnh 11 Toán 2 - THPT Chuyên Bến Tre",
+            "Bậc Thầy Công Nghệ Số & Full-Stack Architect",
+            "Đam Mê Thể Thao & Tư Duy Chiến Lược"
+        ];
+        let rIndex = 0, cIndex = 0, isDeleting = false;
+        function runTypewriter() {
+            const currentRole = roles[rIndex];
+            const targetEl = document.getElementById('executive-typewriter');
+            if (!targetEl) return;
+
             if (isDeleting) {
-                el.innerText = current.substring(0, cIdx--);
-                if (cIdx < 0) { isDeleting = false; rIdx = (rIdx + 1) % roles.length; setTimeout(typeEffect, 400); return; }
+                targetEl.innerText = currentRole.substring(0, cIndex--);
+                if (cIndex < 0) { isDeleting = false; rIndex = (rIndex + 1) % roles.length; setTimeout(runTypewriter, 500); return; }
             } else {
-                el.innerText = current.substring(0, cIdx++);
-                if (cIdx > current.length) { isDeleting = true; setTimeout(typeEffect, 1800); return; }
+                targetEl.innerText = currentRole.substring(0, cIndex++);
+                if (cIndex > currentRole.length) { isDeleting = true; setTimeout(runTypewriter, 2000); return; }
             }
-            setTimeout(typeEffect, isDeleting ? 40 : 80);
+            setTimeout(typewriterSpeed = isDeleting ? 30 : 70, runTypewriter);
         }
-        document.addEventListener('DOMContentLoaded', typeEffect);
+        document.addEventListener('DOMContentLoaded', runTypewriter);
 
-        // CANVAS BACKGROUND ANIMATION
-        const canvas = document.getElementById('math-canvas');
+        // CANVAS MATH CONSTELLATION
+        const canvas = document.getElementById('executive-canvas');
         const ctx = canvas.getContext('2d');
-        let pts = [];
-        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
+        let particles = [];
+        
+        function resizeGrid() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeGrid);
+        resizeGrid();
 
-        for(let i=0; i<45; i++) {
-            pts.push({
-                x: Math.random()*canvas.width,
-                y: Math.random()*canvas.height,
-                vx: (Math.random()-0.5)*0.6,
-                vy: (Math.random()-0.5)*0.6
+        for (let i = 0; i < 50; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5
             });
         }
 
-        function drawCanvas() {
-            ctx.clearRect(0,0,canvas.width,canvas.height);
-            ctx.fillStyle = 'rgba(99, 102, 241, 0.4)';
+        function renderCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(99, 102, 241, 0.45)';
             ctx.strokeStyle = 'rgba(99, 102, 241, 0.08)';
 
-            pts.forEach((p, idx) => {
+            particles.forEach((p, index) => {
                 p.x += p.vx; p.y += p.vy;
-                if(p.x<0 || p.x>canvas.width) p.vx *= -1;
-                if(p.y<0 || p.y>canvas.height) p.vy *= -1;
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
 
                 ctx.beginPath();
-                ctx.arc(p.x, p.y, 2, 0, Math.PI*2);
+                ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
                 ctx.fill();
 
-                for(let j=idx+1; j<pts.length; j++) {
-                    let p2 = pts[j];
-                    let dist = Math.hypot(p.x-p2.x, p.y-p2.y);
-                    if(dist < 130) {
+                for (let j = index + 1; j < particles.length; j++) {
+                    let p2 = particles[j];
+                    let distance = Math.hypot(p.x - p2.x, p.y - p2.y);
+                    if (distance < 140) {
                         ctx.beginPath();
                         ctx.moveTo(p.x, p.y);
                         ctx.lineTo(p2.x, p2.y);
@@ -559,89 +503,83 @@
                     }
                 }
             });
-            requestAnimationFrame(drawCanvas);
+            requestAnimationFrame(renderCanvas);
         }
-        drawCanvas();
+        renderCanvas();
 
-        // TAB SWITCHING
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+        // TAB SWITCHER
+        function switchTab(tabKey) {
+            document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active', 'text-white', 'bg-gradient-to-r', 'from-indigo-600', 'to-purple-600', 'shadow-lg');
+                btn.classList.remove('active', 'text-white', 'bg-gradient-to-r', 'from-indigo-600', 'to-purple-600', 'shadow-xl');
                 btn.classList.add('text-slate-400');
             });
 
-            const target = document.getElementById(tabId);
-            if(target) target.classList.add('active');
-
-            const btn = document.getElementById('btn-' + tabId);
-            if(btn) {
-                btn.classList.add('active', 'text-white', 'bg-gradient-to-r', 'from-indigo-600', 'to-purple-600', 'shadow-lg');
-                btn.classList.remove('text-slate-400');
-            }
+            document.getElementById('panel-' + tabKey).classList.add('active');
+            const activeBtn = document.getElementById('btn-' + tabKey);
+            activeBtn.classList.add('active', 'text-white', 'bg-gradient-to-r', 'from-indigo-600', 'to-purple-600', 'shadow-xl');
+            activeBtn.classList.remove('text-slate-400');
         }
 
-        // CLIPBOARD COPY
-        function copyToClipboard(text, type) {
-            navigator.clipboard.writeText(text);
-            const toast = document.getElementById('toast');
-            document.getElementById('toast-msg').innerText = `Đã sao chép ${type}: ${text}`;
-            toast.classList.remove('-translate-y-24', 'opacity-0');
-            setTimeout(() => toast.classList.add('-translate-y-24', 'opacity-0'), 2500);
+        // CLIPBOARD TOAST NOTIFICATION
+        function copyToClipboard(val, label) {
+            navigator.clipboard.writeText(val);
+            const alertBox = document.getElementById('toast-alert');
+            document.getElementById('toast-text').innerText = `Đã sao chép ${label}: ${val}`;
+            alertBox.classList.remove('-translate-y-28', 'opacity-0');
+            setTimeout(() => alertBox.classList.add('-translate-y-28', 'opacity-0'), 2500);
         }
 
         // VCARD GENERATOR
-        function generateVCard() {
-            const vcard = `BEGIN:VCARD\nVERSION:3.0\nFN:Lê Nguyên Nhật Huy\nTITLE:Học sinh 11 Toán 2 - THPT Chuyên Bến Tre\nEMAIL:contact@nhathuy.dev\nTEL:0987654321\nEND:VCARD`;
-            const blob = new Blob([vcard], { type: 'text/vcard' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'Le_Nguyen_Nhat_Huy.vcf';
-            a.click();
+        function downloadVCard() {
+            const vCardData = `BEGIN:VCARD\nVERSION:3.0\nFN:Lê Nguyên Nhật Huy\nTITLE:Chủ Tịch Tập Đoàn Nghiên Cứu Khoa Học Toán Học - 11 Toán 2 Chuyên Bến Tre\nEMAIL:contact@nhathuy.dev\nTEL:0987654321\nEND:VCARD`;
+            const blob = new Blob([vCardData], { type: 'text/vcard' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'Le_Nguyen_Nhat_Huy_Executive.vcf';
+            link.click();
         }
 
         // QUIZ LOGIC
-        const quizData = [
-            { q: "Nếu 2x + 5 = 15, giá trị x^2 là bao nhiêu?", opts: ["25", "10", "16", "20"], a: 0 },
-            { q: "Số tiếp theo của dãy: 2, 6, 12, 20, 30, ...?", opts: ["36", "42", "40", "48"], a: 1 }
+        const quizBank = [
+            { question: "Nếu nghiệm của phương trình x^2 - 5x + 6 = 0 là a và b, giá trị của a^2 + b^2 là bao nhiêu?", options: ["13", "25", "10", "12"], correct: 0 },
+            { question: "Trong không gian, số đỉnh của một hình lập phương là bao nhiêu?", options: ["6", "8", "12", "4"], correct: 1 }
         ];
-        let qIdx = 0;
-        function loadQuiz() {
-            if(qIdx >= quizData.length) {
-                document.getElementById('quiz-container').innerHTML = `<h3 class="text-base font-bold text-emerald-400 mb-2">Chúc mừng! Ngài đã hoàn thành tốt các thử thách.</h3><p class="text-xs text-slate-400">Tư duy logic của ngài thật ấn tượng!</p>`;
+        let currentQ = 0;
+        function loadQuizItem() {
+            if (currentQ >= quizBank.length) {
+                document.getElementById('quiz-wrapper').innerHTML = `<h3 class="text-base font-bold text-emerald-400 mb-2">Chúc mừng! Ngài đã hoàn thành xuất sắc các thử thách tư duy.</h3><p class="text-xs text-slate-400">Trí tuệ và logic của Chủ tịch đạt mức tối đa!</p>`;
                 return;
             }
-            const q = quizData[qIdx];
-            document.getElementById('quiz-step').innerText = `CÂU HỎI ${qIdx+1}/${quizData.length}`;
-            document.getElementById('quiz-question').innerText = q.q;
-            const optsContainer = document.getElementById('quiz-options');
-            optsContainer.innerHTML = '';
-            q.opts.forEach((opt, idx) => {
-                optsContainer.innerHTML += `<button onclick="checkAnswer(${idx})" class="w-full p-3 rounded-xl glass-input hover:border-cyan-400 text-xs font-semibold text-slate-200 transition">${opt}</button>`;
+            const q = quizBank[currentQ];
+            document.getElementById('quiz-badge').innerText = `CÂU HỎI ${currentQ + 1} / ${quizBank.length}`;
+            document.getElementById('quiz-title').innerText = q.question;
+            const choiceBox = document.getElementById('quiz-choices');
+            choiceBox.innerHTML = '';
+            q.options.forEach((opt, idx) => {
+                choiceBox.innerHTML += `<button onclick="verifyAnswer(${idx})" class="w-full p-3.5 rounded-xl glass-input hover:border-cyan-400 text-xs font-semibold text-slate-200 transition text-left flex items-center justify-between"><span>${opt}</span><i class="fa-solid fa-chevron-right text-slate-500 text-[10px]"></i></button>`;
             });
         }
-        function checkAnswer(selected) {
-            if(selected === quizData[qIdx].a) {
-                qIdx++;
-                loadQuiz();
+        function verifyAnswer(idx) {
+            if (idx === quizBank[currentQ].correct) {
+                currentQ++;
+                loadQuizItem();
             } else {
-                alert("Chưa chính xác, ngài thử tính lại nhé!");
+                alert("Đáp án chưa chính xác, Chủ tịch hãy tính lại nhé!");
             }
         }
-        document.addEventListener('DOMContentLoaded', loadQuiz);
+        document.addEventListener('DOMContentLoaded', loadQuizItem);
 
-        // GUESTBOOK LOCALSTORAGE
-        function addMessage(e) {
+        // GUESTBOOK HANDLER
+        function postMessage(e) {
             e.preventDefault();
-            const name = document.getElementById('gb-name').value;
-            const role = document.getElementById('gb-role').value;
-            const msg = document.getElementById('gb-msg').value;
+            const name = document.getElementById('user-name').value;
+            const tag = document.getElementById('user-tag').value;
+            const msg = document.getElementById('user-msg').value;
 
-            const list = document.getElementById('messages-list');
-            list.innerHTML = `<div class="glass-card p-4 rounded-2xl border border-slate-800"><div class="flex justify-between items-center mb-1"><span class="text-xs font-bold text-white">${name}</span><span class="text-[10px] text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded-full">${role}</span></div><p class="text-xs text-slate-400">${msg}</p></div>` + list.innerHTML;
-            
-            document.getElementById('guestbook-form').reset();
+            const list = document.getElementById('messages-container');
+            list.innerHTML = `<div class="glass-inner p-4 rounded-2xl border border-slate-800"><div class="flex justify-between items-center mb-1.5"><span class="text-xs font-bold text-white">${name}</span><span class="text-[10px] font-mono text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded-full">${tag}</span></div><p class="text-xs text-slate-300">${msg}</p></div>` + list.innerHTML;
+            document.getElementById('comment-form').reset();
         }
     </script>
 </body>
