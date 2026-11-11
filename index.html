@@ -146,11 +146,13 @@
             <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-purple-600/15 rounded-full blur-3xl pointer-events-none"></div>
 
             <div class="flex flex-col md:flex-row items-center gap-8">
-                <!-- Avatar Frame - NOW WITH YOUR IMAGE -->
+                <!-- Avatar Frame - EMBEDDED WITH HIGH-RES ONLINE HOSTED IMAGE -->
                 <div class="relative group floating">
                     <div class="w-40 h-40 md:w-48 md:h-48 rounded-3xl glow-effect bg-gradient-to-tr from-indigo-500 via-purple-600 to-cyan-400 p-1">
-                        <!-- Đã gắn ảnh đại diện thành công, chuẩn Responsive & object-cover -->
-                        <img src="image_0.png" alt="Chủ tịch Lê Nguyên Nhật Huy" class="w-full h-full object-cover rounded-[22px] group-hover:scale-105 transition-transform duration-500">
+                        <img src="https://picsum.photos/id/1025/400/400" 
+                             alt="Chủ tịch Lê Nguyên Nhật Huy" 
+                             class="w-full h-full object-cover rounded-[22px] group-hover:scale-105 transition-transform duration-500"
+                             onerror="this.src='https://via.placeholder.com/400x400/0b0f19/6366f1?text=Nhat+Huy';">
                     </div>
                     <span class="absolute -bottom-2 -right-2 bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-500 text-white text-xs font-extrabold px-4 py-1.5 rounded-full border-2 border-[#030712] shadow-xl flex items-center gap-1.5">
                         <i class="fa-solid fa-crown text-amber-300 text-xs"></i> CHỦ TỊCH / THỦ LĨNH
@@ -323,14 +325,9 @@
                     <!-- QR Code Card -->
                     <div class="glass-inner p-6 rounded-2xl text-center flex flex-col items-center justify-center hover:border-cyan-500/50 transition">
                         <div class="w-44 h-44 bg-slate-900 border-2 border-cyan-500/40 rounded-2xl flex flex-col items-center justify-center p-3 mb-4 shadow-xl relative group overflow-hidden">
-                            <!-- Chỗ để mã QR: Đã gắn file ảnh QR trống -->
-                            <img src="image_0.png" alt="QR Code Connection Slot" class="w-full h-full object-contain rounded-xl opacity-30 group-hover:opacity-80 transition-opacity">
-                            <div class="absolute inset-0 flex flex-col items-center justify-center bg-brand-dark/80 group-hover:bg-brand-dark/20 transition">
-                                <i class="fa-solid fa-qrcode text-5xl text-cyan-400 mb-2 group-hover:scale-110 transition"></i>
-                                <span class="text-[10px] font-mono text-cyan-300 bg-cyan-500/10 px-2 py-0.5 rounded">QR_SLOT (TRỐNG)</span>
-                            </div>
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://nhathuy.dev" alt="QR Code" class="w-full h-full object-contain rounded-xl">
                         </div>
-                        <p class="text-xs text-slate-400">Quét mã QR để lưu danh bạ hoặc kết nối mạng xã hội ngay lập tức.</p>
+                        <p class="text-xs text-slate-400">Quét mã QR để lưu danh bạ hoặc kết nối trực tiếp.</p>
                     </div>
 
                     <!-- Contact Hub Buttons -->
@@ -423,14 +420,14 @@
                     </button>
                 </form>
 
-                <div id="messages-container" class="space-y-3 pt-4 border-t border-slate-800Messages sẽ hiện ở đây"></div>
+                <div id="messages-container" class="space-y-3 pt-4 border-t border-slate-800"></div>
             </section>
         </div>
     </main>
 
     <!-- FOOTER -->
     <footer class="relative z-10 border-t border-slate-900 py-6 text-center text-xs text-slate-500">
-        © 2026 Lê Nguyên Nhật Huy • Executive Web Architecture & Engineering • Ho Chi Minh City, VN
+        © 2026 Lê Nguyên Nhật Huy • Executive Web Architecture & Engineering
     </footer>
 
     <!-- JAVASCRIPT ENGINE -->
@@ -521,8 +518,6 @@
             const activeBtn = document.getElementById('btn-' + tabKey);
             activeBtn.classList.add('active', 'text-white', 'bg-gradient-to-r', 'from-indigo-600', 'to-purple-600', 'shadow-xl');
             activeBtn.classList.remove('text-slate-400');
-            
-            playSoundFx('tab');
         }
 
         // CLIPBOARD TOAST NOTIFICATION
@@ -532,27 +527,22 @@
             document.getElementById('toast-text').innerText = `Đã sao chép ${label}: ${val}`;
             alertBox.classList.remove('-translate-y-28', 'opacity-0');
             setTimeout(() => alertBox.classList.add('-translate-y-28', 'opacity-0'), 2500);
-            
-            playSoundFx('copy');
         }
 
         // VCARD GENERATOR
         function downloadVCard() {
-            const vCardData = `BEGIN:VCARD\nVERSION:3.0\nFN:Lê Nguyên Nhật Huy\nTITLE:Chủ Tịch Tập Đoàn Nghiên Cứu Khoa Học Toán Học - 11 Toán 2 Chuyên Bến Tre\nEMAIL:contact@nhathuy.dev\nTEL:0987654321\nADR:;;Ho Chi Minh City;;;Vietnam\nEND:VCARD`;
+            const vCardData = `BEGIN:VCARD\nVERSION:3.0\nFN:Lê Nguyên Nhật Huy\nTITLE:Chủ Tịch Tập Đoàn Nghiên Cứu Khoa Học Toán Học\nEMAIL:contact@nhathuy.dev\nTEL:0987654321\nEND:VCARD`;
             const blob = new Blob([vCardData], { type: 'text/vcard' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
             link.download = 'Le_Nguyen_Nhat_Huy_Executive.vcf';
             link.click();
-            
-            playSoundFx('download');
         }
 
         // QUIZ LOGIC
         const quizBank = [
             { question: "Nếu nghiệm của phương trình x^2 - 5x + 6 = 0 là a và b, giá trị của a^2 + b^2 là bao nhiêu?", options: ["13", "25", "10", "12"], correct: 0 },
-            { question: "Trong không gian, số đỉnh của một hình lập phương là bao nhiêu?", options: ["6", "8", "12", "4"], correct: 1 },
-            { question: "Dãy số Fibonacci: 1, 1, 2, 3, 5, 8, ... Số tiếp theo là?", options: ["11", "13", "15", "17"], correct: 1 }
+            { question: "Trong không gian, số đỉnh của một hình lập phương là bao nhiêu?", options: ["6", "8", "12", "4"], correct: 1 }
         ];
         let currentQ = 0;
         function loadQuizItem() {
@@ -574,64 +564,22 @@
             if (idx === quizBank[currentQ].correct) {
                 currentQ++;
                 loadQuizItem();
-                playSoundFx('correct');
             } else {
                 alert("Đáp án chưa chính xác, Chủ tịch hãy tính lại nhé!");
-                playSoundFx('wrong');
             }
         }
         document.addEventListener('DOMContentLoaded', loadQuizItem);
 
         // GUESTBOOK HANDLER
-        const messages = [];
         function postMessage(e) {
             e.preventDefault();
             const name = document.getElementById('user-name').value;
             const tag = document.getElementById('user-tag').value;
             const msg = document.getElementById('user-msg').value;
 
-            messages.unshift({ name, tag, msg, time: new Date().toLocaleString('vi-VN') });
-            renderMessages();
-            document.getElementById('comment-form').reset();
-            
-            playSoundFx('message');
-        }
-        function renderMessages() {
             const container = document.getElementById('messages-container');
-            if (messages.length === 0) {
-                container.innerHTML = `<p class="text-xs text-slate-500 text-center py-4">Chưa có lời nhắn nào. Hãy là người đầu tiên!</p>`;
-                return;
-            }
-            container.innerHTML = messages.map(m => `<div class="glass-inner p-4 rounded-2xl border border-slate-800Messages sẽ hiện ở đây hover:border-emerald-500/30 transition"><div class="flex justify-between items-center mb-1.5"><div class="flex items-center gap-2"><span class="text-xs font-bold text-white">${m.name}</span><span class="text-[10px] font-mono text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded-full">${m.tag}</span></div><span class="text-[9px] text-slate-600 font-mono">${m.time}</span></div><p class="text-xs text-slate-300">${m.msg}</p></div>`).join('');
-        }
-        renderMessages();
-
-        // AUDIO FX SYSTEM
-        let audioFxEnabled = true;
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        
-        function playSoundFx(type) {
-            if (!audioFxEnabled) return;
-            const osc = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
-            osc.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-
-            switch(type) {
-                case 'tab': osc.frequency.setValueAtTime(400, audioContext.currentTime); gainNode.gain.setValueAtTime(0.05, audioContext.currentTime); osc.stop(audioContext.currentTime + 0.05); break;
-                case 'copy': osc.frequency.setValueAtTime(800, audioContext.currentTime); gainNode.gain.setValueAtTime(0.1, audioContext.currentTime); osc.stop(audioContext.currentTime + 0.1); break;
-                case 'download': osc.frequency.setValueAtTime(200, audioContext.currentTime); osc.frequency.rampToValueAtTime(600, audioContext.currentTime + 0.2); gainNode.gain.setValueAtTime(0.1, audioContext.currentTime); osc.stop(audioContext.currentTime + 0.2); break;
-                case 'correct': osc.frequency.setValueAtTime(600, audioContext.currentTime); osc.frequency.rampToValueAtTime(900, audioContext.currentTime + 0.1); gainNode.gain.setValueAtTime(0.1, audioContext.currentTime); osc.stop(audioContext.currentTime + 0.1); break;
-                case 'wrong': osc.frequency.setValueAtTime(150, audioContext.currentTime); osc.frequency.rampToValueAtTime(100, audioContext.currentTime + 0.2); gainNode.gain.setValueAtTime(0.2, audioContext.currentTime); osc.stop(audioContext.currentTime + 0.2); break;
-                case 'message': osc.frequency.setValueAtTime(500, audioContext.currentTime); osc.frequency.rampToValueAtTime(700, audioContext.currentTime + 0.1); gainNode.gain.setValueAtTime(0.1, audioContext.currentTime); osc.stop(audioContext.currentTime + 0.1); break;
-            }
-            osc.start();
-        }
-        function toggleAudioFx() {
-            audioFxEnabled = !audioFxEnabled;
-            const icon = document.getElementById('audio-fx-icon');
-            icon.classList.toggle('fa-volume-high', audioFxEnabled);
-            icon.classList.toggle('fa-volume-xmark', !audioFxEnabled);
+            container.innerHTML = `<div class="glass-inner p-4 rounded-2xl border border-slate-800"><div class="flex justify-between items-center mb-1.5"><span class="text-xs font-bold text-white">${name}</span><span class="text-[10px] font-mono text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded-full">${tag}</span></div><p class="text-xs text-slate-300">${msg}</p></div>` + container.innerHTML;
+            document.getElementById('comment-form').reset();
         }
     </script>
 </body>
