@@ -118,6 +118,11 @@
         <span id="toast-text" class="text-xs md:text-sm font-semibold">Đã sao chép thành công!</span>
     </div>
 
+    <!-- AUDIO FX TOGGLE -->
+    <button onclick="toggleAudioFx()" id="audio-fx-btn" title="Bật/Tắt âm thanh tương tác" class="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full glass-box border border-indigo-500/30 text-indigo-400 hover:text-white flex items-center justify-center shadow-xl transition hover:scale-110">
+        <i class="fa-solid fa-volume-high text-base" id="audio-fx-icon"></i>
+    </button>
+
     <!-- TOP BAR -->
     <header class="relative z-20 container mx-auto px-4 pt-6 max-w-5xl flex justify-between items-center">
         <div class="flex items-center gap-2.5">
@@ -141,14 +146,11 @@
             <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-purple-600/15 rounded-full blur-3xl pointer-events-none"></div>
 
             <div class="flex flex-col md:flex-row items-center gap-8">
-                <!-- Avatar Frame with QR Section & Upload Ready -->
+                <!-- Avatar Frame - NOW WITH YOUR IMAGE -->
                 <div class="relative group floating">
                     <div class="w-40 h-40 md:w-48 md:h-48 rounded-3xl glow-effect bg-gradient-to-tr from-indigo-500 via-purple-600 to-cyan-400 p-1">
-                        <!-- Vùng chứa ảnh: Thay thẻ div bên dưới bằng <img src="URL_ANH_CUA_BAN" class="w-full h-full object-cover rounded-[22px]"> khi bạn có ảnh -->
-                        <div class="w-full h-full bg-[#070b16] rounded-[22px] flex flex-col items-center justify-center overflow-hidden relative">
-                            <i class="fa-solid fa-user-tie text-5xl text-indigo-400 mb-2 group-hover:scale-110 transition-transform duration-300"></i>
-                            <span class="font-mono text-[10px] tracking-widest text-cyan-400 bg-slate-900/90 border border-cyan-500/30 px-2.5 py-0.5 rounded-full">AVATAR SLOT</span>
-                        </div>
+                        <!-- Đã gắn ảnh đại diện thành công, chuẩn Responsive & object-cover -->
+                        <img src="image_0.png" alt="Chủ tịch Lê Nguyên Nhật Huy" class="w-full h-full object-cover rounded-[22px] group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <span class="absolute -bottom-2 -right-2 bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-500 text-white text-xs font-extrabold px-4 py-1.5 rounded-full border-2 border-[#030712] shadow-xl flex items-center gap-1.5">
                         <i class="fa-solid fa-crown text-amber-300 text-xs"></i> CHỦ TỊCH / THỦ LĨNH
@@ -178,16 +180,13 @@
                         <span id="executive-typewriter" class="text-cyan-400 font-mono text-sm md:text-base font-semibold typewriter-cursor"></span>
                     </div>
 
-                    <!-- Tags & Hobbies: Thể thao & Công nghệ -->
+                    <!-- Tags & Hobbies -->
                     <div class="flex flex-wrap gap-2 justify-center md:justify-start">
-                        <span class="glass-inner text-cyan-300 border border-cyan-500/30 text-xs px-3.5 py-1.5 rounded-xl font-medium flex items-center gap-2">
+                        <span class="glass-inner text-cyan-300 border border-cyan-500/30 text-xs px-3.5 py-1.5 rounded-xl font-medium flex items-center gap-2 hover:border-cyan-400 transition cursor-default">
                             <i class="fa-solid fa-basketball text-cyan-400"></i> Đam Mê Thể Thao & Chiến Thuật
                         </span>
-                        <span class="glass-inner text-indigo-300 border border-indigo-500/30 text-xs px-3.5 py-1.5 rounded-xl font-medium flex items-center gap-2">
+                        <span class="glass-inner text-indigo-300 border border-indigo-500/30 text-xs px-3.5 py-1.5 rounded-xl font-medium flex items-center gap-2 hover:border-indigo-400 transition cursor-default">
                             <i class="fa-solid fa-microchip text-indigo-400"></i> Bậc Thầy Công Nghệ Số & Full-Stack
-                        </span>
-                        <span class="glass-inner text-amber-300 border border-amber-500/30 text-xs px-3.5 py-1.5 rounded-xl font-medium flex items-center gap-2">
-                            <i class="fa-solid fa-chess-king text-amber-400"></i> Tư Duy Lãnh Đạo
                         </span>
                     </div>
                 </div>
@@ -249,7 +248,7 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="glass-inner p-5 rounded-2xl space-y-3">
+                    <div class="glass-inner p-5 rounded-2xl space-y-3 hover:border-indigo-500/40 transition">
                         <h3 class="text-sm font-bold text-indigo-300 flex items-center gap-2">
                             <i class="fa-solid fa-square-root-variable text-indigo-400"></i> Tư Duy Toán Học Sắc Sảo
                         </h3>
@@ -257,7 +256,7 @@
                             Là học sinh lớp <strong>11 Toán 2 - THPT Chuyên Bến Tre</strong>, tôi xem toán học là cốt lõi của mọi giải pháp logic. Khả năng phân tích sâu sắc giúp tôi làm chủ công nghệ và định hình chiến lược trong mọi dự án.
                         </p>
                     </div>
-                    <div class="glass-inner p-5 rounded-2xl space-y-3">
+                    <div class="glass-inner p-5 rounded-2xl space-y-3 hover:border-purple-500/40 transition">
                         <h3 class="text-sm font-bold text-purple-300 flex items-center gap-2">
                             <i class="fa-solid fa-chess-king text-purple-400"></i> Phong Cách Lãnh Đạo Thủ Lĩnh
                         </h3>
@@ -281,25 +280,25 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="glass-inner p-5 rounded-2xl border-l-4 border-l-indigo-500">
+                    <div class="glass-inner p-5 rounded-2xl border-l-4 border-l-indigo-500 hover:bg-indigo-950/20 transition group">
                         <h4 class="text-sm font-bold text-white mb-2 flex items-center gap-2">
-                            <i class="fa-solid fa-laptop-code text-indigo-400"></i> Bậc Thầy Công Nghệ Số
+                            <i class="fa-solid fa-laptop-code text-indigo-400 group-hover:scale-110 transition"></i> Bậc Thầy Công Nghệ Số
                         </h4>
                         <p class="text-xs text-slate-300 leading-relaxed">
                             Làm chủ kiến trúc Full-Stack, tư duy giải thuật tối ưu, phát triển web app tốc độ cao và tự động hóa hệ thống thông minh.
                         </p>
                     </div>
-                    <div class="glass-inner p-5 rounded-2xl border-l-4 border-l-cyan-500">
+                    <div class="glass-inner p-5 rounded-2xl border-l-4 border-l-cyan-500 hover:bg-cyan-950/20 transition group">
                         <h4 class="text-sm font-bold text-white mb-2 flex items-center gap-2">
-                            <i class="fa-solid fa-basketball text-cyan-400"></i> Đam Mê Thể Thao
+                            <i class="fa-solid fa-basketball text-cyan-400 group-hover:scale-110 transition"></i> Đam Mê Thể Thao
                         </h4>
                         <p class="text-xs text-slate-300 leading-relaxed">
                             Nhiệt huyết trên sân bóng rổ và bóng đá. Thể thao rèn luyện sức bền, sự quyết đoán và tinh thần đồng đội sắt đá.
                         </p>
                     </div>
-                    <div class="glass-inner p-5 rounded-2xl border-l-4 border-l-amber-500">
+                    <div class="glass-inner p-5 rounded-2xl border-l-4 border-l-amber-500 hover:bg-amber-950/20 transition group">
                         <h4 class="text-sm font-bold text-white mb-2 flex items-center gap-2">
-                            <i class="fa-solid fa-brain text-amber-400"></i> Phản Biện & Chiến Lược
+                            <i class="fa-solid fa-brain text-amber-400 group-hover:scale-110 transition"></i> Phản Biện & Chiến Lược
                         </h4>
                         <p class="text-xs text-slate-300 leading-relaxed">
                             Khả năng lập luận chặt chẽ, nhìn nhận vấn đề đa chiều từ nền tảng chuyên Toán giúp đưa ra các quyết định chiến lược chính xác.
@@ -322,11 +321,14 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
                     <!-- QR Code Card -->
-                    <div class="glass-inner p-6 rounded-2xl text-center flex flex-col items-center justify-center">
-                        <div class="w-44 h-44 bg-slate-900 border-2 border-cyan-500/40 rounded-2xl flex flex-col items-center justify-center p-3 mb-4 shadow-xl relative group">
-                            <!-- Chỗ để mã QR: Thay thế bằng thẻ <img src="URL_QR_CODE"> khi có ảnh QR thực tế -->
-                            <i class="fa-solid fa-qrcode text-6xl text-cyan-400 mb-2"></i>
-                            <span class="text-[10px] font-mono text-cyan-300 bg-cyan-500/10 px-2 py-0.5 rounded">QR_SLOT (TRỐNG)</span>
+                    <div class="glass-inner p-6 rounded-2xl text-center flex flex-col items-center justify-center hover:border-cyan-500/50 transition">
+                        <div class="w-44 h-44 bg-slate-900 border-2 border-cyan-500/40 rounded-2xl flex flex-col items-center justify-center p-3 mb-4 shadow-xl relative group overflow-hidden">
+                            <!-- Chỗ để mã QR: Đã gắn file ảnh QR trống -->
+                            <img src="image_0.png" alt="QR Code Connection Slot" class="w-full h-full object-contain rounded-xl opacity-30 group-hover:opacity-80 transition-opacity">
+                            <div class="absolute inset-0 flex flex-col items-center justify-center bg-brand-dark/80 group-hover:bg-brand-dark/20 transition">
+                                <i class="fa-solid fa-qrcode text-5xl text-cyan-400 mb-2 group-hover:scale-110 transition"></i>
+                                <span class="text-[10px] font-mono text-cyan-300 bg-cyan-500/10 px-2 py-0.5 rounded">QR_SLOT (TRỐNG)</span>
+                            </div>
                         </div>
                         <p class="text-xs text-slate-400">Quét mã QR để lưu danh bạ hoặc kết nối mạng xã hội ngay lập tức.</p>
                     </div>
@@ -387,7 +389,7 @@
                     </div>
                 </div>
 
-                <div class="glass-inner p-6 rounded-2xl max-w-xl mx-auto text-center space-y-4" id="quiz-wrapper">
+                <div class="glass-inner p-6 rounded-2xl max-w-xl mx-auto text-center space-y-4 hover:border-cyan-500/40 transition" id="quiz-wrapper">
                     <span id="quiz-badge" class="text-xs font-mono text-cyan-400 bg-cyan-500/10 border border-cyan-500/30 px-3 py-1 rounded-full">CÂU HỎI 1 / 3</span>
                     <h3 id="quiz-title" class="text-base font-bold text-white leading-relaxed">...</h3>
                     <div id="quiz-choices" class="grid grid-cols-1 gap-2.5 pt-2"></div>
@@ -416,19 +418,19 @@
                         </select>
                     </div>
                     <textarea id="user-msg" required rows="3" placeholder="Lời nhắn hoặc nhận xét ấn tượng..." class="glass-input w-full px-4 py-3 rounded-xl text-xs text-white placeholder-slate-500"></textarea>
-                    <button type="submit" class="px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold text-xs shadow-lg hover:opacity-90 transition flex items-center gap-2">
-                        <span>Gửi Lời Nhắn</span> <i class="fa-solid fa-paper-plane"></i>
+                    <button type="submit" class="px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold text-xs shadow-lg hover:opacity-90 transition flex items-center gap-2 group">
+                        <span>Gửi Lời Nhắn</span> <i class="fa-solid fa-paper-plane group-hover:translate-x-1 transition"></i>
                     </button>
                 </form>
 
-                <div id="messages-container" class="space-y-3 pt-4 border-t border-slate-800"></div>
+                <div id="messages-container" class="space-y-3 pt-4 border-t border-slate-800Messages sẽ hiện ở đây"></div>
             </section>
         </div>
     </main>
 
     <!-- FOOTER -->
     <footer class="relative z-10 border-t border-slate-900 py-6 text-center text-xs text-slate-500">
-        © 2026 Lê Nguyên Nhật Huy • Executive Web Architecture & Engineering
+        © 2026 Lê Nguyên Nhật Huy • Executive Web Architecture & Engineering • Ho Chi Minh City, VN
     </footer>
 
     <!-- JAVASCRIPT ENGINE -->
@@ -453,7 +455,7 @@
                 targetEl.innerText = currentRole.substring(0, cIndex++);
                 if (cIndex > currentRole.length) { isDeleting = true; setTimeout(runTypewriter, 2000); return; }
             }
-            setTimeout(typewriterSpeed = isDeleting ? 30 : 70, runTypewriter);
+            setTimeout(runTypewriter, isDeleting ? 30 : 70);
         }
         document.addEventListener('DOMContentLoaded', runTypewriter);
 
@@ -519,6 +521,8 @@
             const activeBtn = document.getElementById('btn-' + tabKey);
             activeBtn.classList.add('active', 'text-white', 'bg-gradient-to-r', 'from-indigo-600', 'to-purple-600', 'shadow-xl');
             activeBtn.classList.remove('text-slate-400');
+            
+            playSoundFx('tab');
         }
 
         // CLIPBOARD TOAST NOTIFICATION
@@ -528,27 +532,33 @@
             document.getElementById('toast-text').innerText = `Đã sao chép ${label}: ${val}`;
             alertBox.classList.remove('-translate-y-28', 'opacity-0');
             setTimeout(() => alertBox.classList.add('-translate-y-28', 'opacity-0'), 2500);
+            
+            playSoundFx('copy');
         }
 
         // VCARD GENERATOR
         function downloadVCard() {
-            const vCardData = `BEGIN:VCARD\nVERSION:3.0\nFN:Lê Nguyên Nhật Huy\nTITLE:Chủ Tịch Tập Đoàn Nghiên Cứu Khoa Học Toán Học - 11 Toán 2 Chuyên Bến Tre\nEMAIL:contact@nhathuy.dev\nTEL:0987654321\nEND:VCARD`;
+            const vCardData = `BEGIN:VCARD\nVERSION:3.0\nFN:Lê Nguyên Nhật Huy\nTITLE:Chủ Tịch Tập Đoàn Nghiên Cứu Khoa Học Toán Học - 11 Toán 2 Chuyên Bến Tre\nEMAIL:contact@nhathuy.dev\nTEL:0987654321\nADR:;;Ho Chi Minh City;;;Vietnam\nEND:VCARD`;
             const blob = new Blob([vCardData], { type: 'text/vcard' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
             link.download = 'Le_Nguyen_Nhat_Huy_Executive.vcf';
             link.click();
+            
+            playSoundFx('download');
         }
 
         // QUIZ LOGIC
         const quizBank = [
             { question: "Nếu nghiệm của phương trình x^2 - 5x + 6 = 0 là a và b, giá trị của a^2 + b^2 là bao nhiêu?", options: ["13", "25", "10", "12"], correct: 0 },
-            { question: "Trong không gian, số đỉnh của một hình lập phương là bao nhiêu?", options: ["6", "8", "12", "4"], correct: 1 }
+            { question: "Trong không gian, số đỉnh của một hình lập phương là bao nhiêu?", options: ["6", "8", "12", "4"], correct: 1 },
+            { question: "Dãy số Fibonacci: 1, 1, 2, 3, 5, 8, ... Số tiếp theo là?", options: ["11", "13", "15", "17"], correct: 1 }
         ];
         let currentQ = 0;
         function loadQuizItem() {
+            const wrapper = document.getElementById('quiz-wrapper');
             if (currentQ >= quizBank.length) {
-                document.getElementById('quiz-wrapper').innerHTML = `<h3 class="text-base font-bold text-emerald-400 mb-2">Chúc mừng! Ngài đã hoàn thành xuất sắc các thử thách tư duy.</h3><p class="text-xs text-slate-400">Trí tuệ và logic của Chủ tịch đạt mức tối đa!</p>`;
+                wrapper.innerHTML = `<h3 class="text-base font-bold text-emerald-400 mb-2">Chúc mừng! Ngài đã hoàn thành xuất sắc các thử thách tư duy.</h3><p class="text-xs text-slate-400">Trí tuệ và logic của Chủ tịch đạt mức tối đa!</p>`;
                 return;
             }
             const q = quizBank[currentQ];
@@ -557,29 +567,71 @@
             const choiceBox = document.getElementById('quiz-choices');
             choiceBox.innerHTML = '';
             q.options.forEach((opt, idx) => {
-                choiceBox.innerHTML += `<button onclick="verifyAnswer(${idx})" class="w-full p-3.5 rounded-xl glass-input hover:border-cyan-400 text-xs font-semibold text-slate-200 transition text-left flex items-center justify-between"><span>${opt}</span><i class="fa-solid fa-chevron-right text-slate-500 text-[10px]"></i></button>`;
+                choiceBox.innerHTML += `<button onclick="verifyAnswer(${idx})" class="w-full p-3.5 rounded-xl glass-input hover:border-cyan-400 text-xs font-semibold text-slate-200 transition text-left flex items-center justify-between group"><span>${opt}</span><i class="fa-solid fa-chevron-right text-slate-500 text-[10px] group-hover:translate-x-1 transition"></i></button>`;
             });
         }
         function verifyAnswer(idx) {
             if (idx === quizBank[currentQ].correct) {
                 currentQ++;
                 loadQuizItem();
+                playSoundFx('correct');
             } else {
                 alert("Đáp án chưa chính xác, Chủ tịch hãy tính lại nhé!");
+                playSoundFx('wrong');
             }
         }
         document.addEventListener('DOMContentLoaded', loadQuizItem);
 
         // GUESTBOOK HANDLER
+        const messages = [];
         function postMessage(e) {
             e.preventDefault();
             const name = document.getElementById('user-name').value;
             const tag = document.getElementById('user-tag').value;
             const msg = document.getElementById('user-msg').value;
 
-            const list = document.getElementById('messages-container');
-            list.innerHTML = `<div class="glass-inner p-4 rounded-2xl border border-slate-800"><div class="flex justify-between items-center mb-1.5"><span class="text-xs font-bold text-white">${name}</span><span class="text-[10px] font-mono text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded-full">${tag}</span></div><p class="text-xs text-slate-300">${msg}</p></div>` + list.innerHTML;
+            messages.unshift({ name, tag, msg, time: new Date().toLocaleString('vi-VN') });
+            renderMessages();
             document.getElementById('comment-form').reset();
+            
+            playSoundFx('message');
+        }
+        function renderMessages() {
+            const container = document.getElementById('messages-container');
+            if (messages.length === 0) {
+                container.innerHTML = `<p class="text-xs text-slate-500 text-center py-4">Chưa có lời nhắn nào. Hãy là người đầu tiên!</p>`;
+                return;
+            }
+            container.innerHTML = messages.map(m => `<div class="glass-inner p-4 rounded-2xl border border-slate-800Messages sẽ hiện ở đây hover:border-emerald-500/30 transition"><div class="flex justify-between items-center mb-1.5"><div class="flex items-center gap-2"><span class="text-xs font-bold text-white">${m.name}</span><span class="text-[10px] font-mono text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded-full">${m.tag}</span></div><span class="text-[9px] text-slate-600 font-mono">${m.time}</span></div><p class="text-xs text-slate-300">${m.msg}</p></div>`).join('');
+        }
+        renderMessages();
+
+        // AUDIO FX SYSTEM
+        let audioFxEnabled = true;
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        
+        function playSoundFx(type) {
+            if (!audioFxEnabled) return;
+            const osc = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            osc.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+
+            switch(type) {
+                case 'tab': osc.frequency.setValueAtTime(400, audioContext.currentTime); gainNode.gain.setValueAtTime(0.05, audioContext.currentTime); osc.stop(audioContext.currentTime + 0.05); break;
+                case 'copy': osc.frequency.setValueAtTime(800, audioContext.currentTime); gainNode.gain.setValueAtTime(0.1, audioContext.currentTime); osc.stop(audioContext.currentTime + 0.1); break;
+                case 'download': osc.frequency.setValueAtTime(200, audioContext.currentTime); osc.frequency.rampToValueAtTime(600, audioContext.currentTime + 0.2); gainNode.gain.setValueAtTime(0.1, audioContext.currentTime); osc.stop(audioContext.currentTime + 0.2); break;
+                case 'correct': osc.frequency.setValueAtTime(600, audioContext.currentTime); osc.frequency.rampToValueAtTime(900, audioContext.currentTime + 0.1); gainNode.gain.setValueAtTime(0.1, audioContext.currentTime); osc.stop(audioContext.currentTime + 0.1); break;
+                case 'wrong': osc.frequency.setValueAtTime(150, audioContext.currentTime); osc.frequency.rampToValueAtTime(100, audioContext.currentTime + 0.2); gainNode.gain.setValueAtTime(0.2, audioContext.currentTime); osc.stop(audioContext.currentTime + 0.2); break;
+                case 'message': osc.frequency.setValueAtTime(500, audioContext.currentTime); osc.frequency.rampToValueAtTime(700, audioContext.currentTime + 0.1); gainNode.gain.setValueAtTime(0.1, audioContext.currentTime); osc.stop(audioContext.currentTime + 0.1); break;
+            }
+            osc.start();
+        }
+        function toggleAudioFx() {
+            audioFxEnabled = !audioFxEnabled;
+            const icon = document.getElementById('audio-fx-icon');
+            icon.classList.toggle('fa-volume-high', audioFxEnabled);
+            icon.classList.toggle('fa-volume-xmark', !audioFxEnabled);
         }
     </script>
 </body>
